@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nifi
+spec:
+  selector:
+    matchLabels:
+      app: nifi
+      tier: backend
+      track: stable
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: nifi
+        tier: backend
+        track: stable
+    spec:
+      containers:
+        - name: nifi
+          image: apache/nifi:latest
+          ports:
+            - name: http
+              containerPort: 8080
+

@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: nifi
+spec:
+  selector:
+    app: nifi
+    tier: backend
+  ports:
+  - protocol: TCP
+    port: 8080
+targetPort: http

@@ -1,0 +1,10 @@
+version: 2
+jobs:
+  build:
+    machine: true
+    steps:
+      - checkout
+      - run: docker build -t whshk/nifi-frontend .
+      - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
+      - run: docker push whshk/nifi-frontend
+

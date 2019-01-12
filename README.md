@@ -12,7 +12,7 @@ $ kubectl create -f https://raw.githubusercontent.com/whs-dot-hk/kubernetes-nifi
 ```
 
 ```
-$ export POD_NAME=$(kubectl get pods --namespace default -l "app=nifi" -o jsonpath="{.items[1].metadata.name}")
+$ export POD_NAME=$(kubectl get pods --namespace default -l "app=nifi-frontend" -o jsonpath="{.items[0].metadata.name}")
 $ kubectl port-forward $POD_NAME 8080:8080
 ```
 

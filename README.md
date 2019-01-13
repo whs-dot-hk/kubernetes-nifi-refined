@@ -1,6 +1,6 @@
 [![CircleCI](https://circleci.com/gh/whs-dot-hk/kubernetes-nifi-refined.svg?style=shield)](https://circleci.com/gh/whs-dot-hk/kubernetes-nifi-refined)
 
-[![asciicast](https://asciinema.org/a/spzmMLLKvWLruBjBKzNl3l0R2.svg)](https://asciinema.org/a/spzmMLLKvWLruBjBKzNl3l0R2)
+[![asciicast](https://asciinema.org/a/OYN3fdGCBOtoDqCZ4UKc5DjWK.svg)](https://asciinema.org/a/OYN3fdGCBOtoDqCZ4UKc5DjWK)
 
 ```
 $ kubectl create -f https://raw.githubusercontent.com/whs-dot-hk/kubernetes-nifi-refined/master/nifi.yaml

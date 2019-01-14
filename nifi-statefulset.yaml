@@ -25,11 +25,11 @@ spec:
         - containerPort: 8080
           name: http
         volumeMounts:
-        - name: data
-          mountPath: /opt/nifi/nifi-current
+        - name: flow
+          mountPath: /opt/nifi/nifi-current/conf/flow.xml.gz
   volumeClaimTemplates:
   - metadata:
-      name: data
+      name: flow
     spec:
       accessModes: [ "ReadWriteOnce" ]
       storageClassName: "default"

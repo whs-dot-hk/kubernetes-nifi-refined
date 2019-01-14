@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: nifi
+spec:
+  selector:
+    matchLabels:
+      app: nifi
+      tier: backend
+      track: stable
+  serviceName: "nifi"
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: nifi
+        tier: backend
+        track: stable
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: nifi
+        image: apache/nifi:latest
+        ports:
+        - containerPort: 8080
+          name: http
+        volumeMounts:
+        - name: data
+          mountPath: /opt/nifi/nifi-current
+  volumeClaimTemplates:
+  - metadata:
+      name: data
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: "default"
+      resources:
+        requests:
+          storage: 10Gi

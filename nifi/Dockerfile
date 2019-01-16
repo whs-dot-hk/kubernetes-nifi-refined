@@ -1,3 +1,5 @@
 FROM apache/nifi:latest
 
-VOLUME ${NIFI_HOME}
+USER root
+
+RUN chown -R root:root ${NIFI_HOME}

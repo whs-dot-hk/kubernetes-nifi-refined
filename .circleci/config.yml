@@ -4,7 +4,9 @@ jobs:
     machine: true
     steps:
       - checkout
-      - run: docker build -t whshk/nifi-frontend .
+      - run: docker build -t whshk/nifi-frontend ./nifi-frontend
+      - run: docker build -t whshk/nifi ./nifi
       - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
       - run: docker push whshk/nifi-frontend
+      - run: docker push whshk/nifi
 

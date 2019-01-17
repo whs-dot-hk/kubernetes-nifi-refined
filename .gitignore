@@ -1,1 +1,3 @@
 nifi-statefulset.yaml
+
+docker-compose.yaml

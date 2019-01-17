@@ -17,3 +17,5 @@ $ kubectl port-forward $POD_NAME 8080:8080
 ```
 
 Visit http://localhost:8080/nifi
+
+Example usage: https://bitbucket.org/whshk/kubernetes-logging/src/master

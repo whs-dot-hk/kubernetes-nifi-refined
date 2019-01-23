@@ -70,4 +70,4 @@ spec:
         storageClassName: "default"
         resources:
           requests:
-            storage: 1Gi
+            storage: 10Gi

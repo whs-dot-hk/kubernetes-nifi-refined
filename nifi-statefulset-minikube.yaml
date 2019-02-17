@@ -1,0 +1,73 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nifi-headless
+  labels:
+    app: nifi
+spec:
+  ports:
+  - port: 8080
+    name: http
+  clusterIP: None
+  selector:
+    app: nifi
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: nifi
+spec:
+  selector:
+    matchLabels:
+      app: nifi
+      tier: backend
+      track: stable
+  serviceName: nifi-headless
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: nifi
+        tier: backend
+        track: stable
+    spec:
+      containers:
+        - name: nifi
+          image: whshk/nifi:latest
+          ports:
+            - name: http
+              containerPort: 8080
+          volumeMounts:
+            - name: nifi-data
+              mountPath: /opt/nifi/nifi-current/conf
+              subPath: conf
+            - name: nifi-data
+              mountPath: /opt/nifi/nifi-current/logs
+              subPath: logs
+            - name: nifi-data
+              mountPath: /opt/nifi/nifi-current/database_repository
+              subPath: database_repository
+            - name: nifi-data
+              mountPath: /opt/nifi/nifi-current/flowfile_repository
+              subPath: flowfile_repository
+            - name: nifi-data
+              mountPath: /opt/nifi/nifi-current/content_repository
+              subPath: content_repository
+            - name: nifi-data
+              mountPath: /opt/nifi/nifi-current/provenance_repository
+              subPath: provenance_repository
+            - name: nifi-data
+              mountPath: /opt/nifi/nifi-current/state
+              subPath: state
+      securityContext:
+        runAsUser: 1000
+        fsGroup: 1000
+  volumeClaimTemplates:
+    - metadata:
+        name: nifi-data
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        storageClassName: "standard"
+        resources:
+          requests:
+            storage: 10Gi

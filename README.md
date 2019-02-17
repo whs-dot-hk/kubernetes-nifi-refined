@@ -18,4 +18,13 @@ $ kubectl port-forward $POD_NAME 8080:8080
 
 Visit http://localhost:8080/nifi
 
+## Minikube Example
+![alt text](minikube.png "Minikube")
+
+```
+$ kubectl create -f https://raw.githubusercontent.com/whs-dot-hk/kubernetes-nifi-refined/master/nifi-statefulset-minikube.yaml
+$ kubectl create -f https://raw.githubusercontent.com/whs-dot-hk/kubernetes-nifi-refined/master/nifi-service.yaml
+$ kubectl create -f https://raw.githubusercontent.com/whs-dot-hk/kubernetes-nifi-refined/master/frontend.yaml<Paste>
+```
+
 Example usage: https://bitbucket.org/whshk/kubernetes-logging/src/master

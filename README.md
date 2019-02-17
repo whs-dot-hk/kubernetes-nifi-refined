@@ -1,5 +1,6 @@
 [![CircleCI](https://circleci.com/gh/whs-dot-hk/kubernetes-nifi-refined.svg?style=shield)](https://circleci.com/gh/whs-dot-hk/kubernetes-nifi-refined)
 
+## Standard Usage
 [![asciicast](https://asciinema.org/a/OYN3fdGCBOtoDqCZ4UKc5DjWK.svg)](https://asciinema.org/a/OYN3fdGCBOtoDqCZ4UKc5DjWK)
 
 ```
@@ -27,4 +28,5 @@ $ kubectl create -f https://raw.githubusercontent.com/whs-dot-hk/kubernetes-nifi
 $ kubectl create -f https://raw.githubusercontent.com/whs-dot-hk/kubernetes-nifi-refined/master/frontend.yaml
 ```
 
-Example usage: https://bitbucket.org/whshk/kubernetes-logging/src/master
+## Other Example
+https://bitbucket.org/whshk/kubernetes-logging/src/master

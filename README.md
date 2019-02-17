@@ -18,7 +18,7 @@ $ kubectl port-forward $POD_NAME 8080:8080
 
 Visit http://localhost:8080/nifi
 
-## Minikube Example
+## Minikube StatefulSet Example
 ![alt text](minikube.png "Minikube")
 
 ```

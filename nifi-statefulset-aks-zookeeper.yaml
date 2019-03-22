@@ -1,0 +1,86 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nifi-headless
+  labels:
+    app: nifi
+spec:
+  ports:
+  - port: 8080
+    name: http
+  clusterIP: None
+  selector:
+    app: nifi
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: nifi
+spec:
+  selector:
+    matchLabels:
+      app: nifi
+      tier: backend
+      track: stable
+  serviceName: nifi-headless
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: nifi
+        tier: backend
+        track: stable
+    spec:
+      containers:
+        - name: nifi
+          image: whshk/nifi:test
+          env:
+            - name: NIFI_CLUSTER_IS_NODE
+              value: "true"
+            - name: NIFI_CLUSTER_NODE_PROTOCOL_PORT
+              value: "2882"
+            - name: NIFI_ZK_CONNECT_STRING
+              value: brawny-toucan-zookeeper-0.brawny-toucan-zookeeper-headless.nifi-cluster-test.svc.cluster.local:2181,brawny-toucan-zookeeper-1.brawny-toucan-zookeeper-headless.nifi-cluster-test.svc.cluster.local:2181,brawny-toucan-zookeeper-2.brawny-toucan-zookeeper-headless.nifi-cluster-test.svc.cluster.local:2181
+            - name: KUBERNETES_HEADLESS_SERVICE_NAME
+              value: nifi-headless
+            - name: NIFI_WEB_HTTP_HOST
+              value: 0.0.0.0
+          ports:
+            - name: http
+              containerPort: 8080
+            - name: protocol
+              containerPort: 2882
+          volumeMounts:
+            - name: nifi-data
+              mountPath: /opt/nifi/nifi-current/conf
+              subPath: conf
+            - name: nifi-data
+              mountPath: /opt/nifi/nifi-current/logs
+              subPath: logs
+            - name: nifi-data
+              mountPath: /opt/nifi/nifi-current/database_repository
+              subPath: database_repository
+            - name: nifi-data
+              mountPath: /opt/nifi/nifi-current/flowfile_repository
+              subPath: flowfile_repository
+            - name: nifi-data
+              mountPath: /opt/nifi/nifi-current/content_repository
+              subPath: content_repository
+            - name: nifi-data
+              mountPath: /opt/nifi/nifi-current/provenance_repository
+              subPath: provenance_repository
+            - name: nifi-data
+              mountPath: /opt/nifi/nifi-current/state
+              subPath: state
+      securityContext:
+        runAsUser: 1000
+        fsGroup: 1000
+  volumeClaimTemplates:
+    - metadata:
+        name: nifi-data
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        storageClassName: "default"
+        resources:
+          requests:
+            storage: 10Gi

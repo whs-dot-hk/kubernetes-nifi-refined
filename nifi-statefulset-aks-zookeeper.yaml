@@ -33,18 +33,23 @@ spec:
     spec:
       containers:
         - name: nifi
-          image: whshk/nifi:test
+          image: whshk/nifi
           env:
             - name: NIFI_CLUSTER_IS_NODE
               value: "true"
             - name: NIFI_CLUSTER_NODE_PROTOCOL_PORT
               value: "2882"
             - name: NIFI_ZK_CONNECT_STRING
-              value: brawny-toucan-zookeeper-0.brawny-toucan-zookeeper-headless.nifi-cluster-test.svc.cluster.local:2181,brawny-toucan-zookeeper-1.brawny-toucan-zookeeper-headless.nifi-cluster-test.svc.cluster.local:2181,brawny-toucan-zookeeper-2.brawny-toucan-zookeeper-headless.nifi-cluster-test.svc.cluster.local:2181
+              value: vocal-whippet-zookeeper
             - name: KUBERNETES_HEADLESS_SERVICE_NAME
               value: nifi-headless
-            - name: NIFI_WEB_HTTP_HOST
-              value: 0.0.0.0
+          resources:
+            requests:
+              memory: "1Gi"
+              cpu: "250m"
+            limits:
+              memory: "1.5Gi"
+              cpu: "500m"
           ports:
             - name: http
               containerPort: 8080

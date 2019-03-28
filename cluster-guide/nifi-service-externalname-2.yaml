@@ -1,0 +1,7 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: nifi
+spec:
+  type: ExternalName
+  externalName: nifi-2.nifi-headless.default.svc.cluster.local

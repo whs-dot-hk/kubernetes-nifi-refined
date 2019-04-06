@@ -1,6 +1,6 @@
 [![CircleCI](https://circleci.com/gh/whs-dot-hk/kubernetes-nifi-refined.svg?style=shield)](https://circleci.com/gh/whs-dot-hk/kubernetes-nifi-refined)
 
-For clusters, check out our [cluster guide](https://github.com/whs-dot-hk/kubernetes-nifi-refined/tree/master/cluster-guide)
+For clusters, check out our [cluster guide](https://github.com/whs-dot-hk/kubernetes-nifi-refined/tree/master/cluster-guide).
 
 ## Standard Usage
 [![asciicast](https://asciinema.org/a/OYN3fdGCBOtoDqCZ4UKc5DjWK.svg)](https://asciinema.org/a/OYN3fdGCBOtoDqCZ4UKc5DjWK)

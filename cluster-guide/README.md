@@ -17,8 +17,10 @@ to add bitnami's repo.
 
 ## Deploy Nifi
 You will need to modify
-https://github.com/whs-dot-hk/kubernetes-nifi-refined/blob/a6497b626e965b97c1ba8a73bbaf83ae55491cd2/nifi-statefulset-minikube-cluster.yaml#L43
+[line 43](https://github.com/whs-dot-hk/kubernetes-nifi-refined/blob/a6497b626e965b97c1ba8a73bbaf83ae55491cd2/nifi-statefulset-minikube-cluster.yaml#L43)
 to be your zookeeper service name.
+Here `singed-quoll-zookeeper` is our zookeeper service name (See
+screenshot above).
 ```
 $ wget https://raw.githubusercontent.com/whs-dot-hk/kubernetes-nifi-refined/master/nifi-statefulset-minikube-cluster.yaml
 ```

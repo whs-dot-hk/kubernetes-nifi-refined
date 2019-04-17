@@ -12,8 +12,8 @@ $ helm init
 $ helm install bitnami/zookeeper \
 --set replicaCount=3
 ```
-You may need to run `helm repo add bitnami https://charts.bitnami.com`
-to add bitnami's repo.
+> You may need to run `helm repo add bitnami https://charts.bitnami.com`
+> to add bitnami's repo.
 
 ## Deploy Nifi
 You will need to modify
